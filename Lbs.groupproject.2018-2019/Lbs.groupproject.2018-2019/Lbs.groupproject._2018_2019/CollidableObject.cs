@@ -11,7 +11,8 @@ namespace Missile_Master_2
     public class CollidableObject
     {
         /// <summary>
-        ///     The current position of the object on screen
+        ///     The current position of the object on screen.
+        ///     Used for position when drawing.
         /// </summary>
         public Vector2 Position;
 
