@@ -70,33 +70,35 @@ namespace Lbs.groupproject._2018_2019
             // Definerar gamePad som en GamePadState så att man kan använda den för att mappa kontroller på en kontroll      
             GamePadState gamePad = GamePad.GetState(PlayerIndex.One);
 
+            // The variable "previousKBState" is used to make sure that you only click a button once. This is done by checking the previous update of currentKBState. 
+            previousKBState = currentKBState;
+
             // Definerar keyboard som en KeyBoardState så att man kan använda den för att mappa kontroller på en keyboard    
             KeyboardState currentKBState = Keyboard.GetState();
 
-            // The variable "previousKBState" is used to make sure that you only click a button once. When you press 
-            previousKBState = currentKBState;
+            
 
 
             // Om du trycker på F1 så kommer spelet att stängas ner
-            if (keyboard.IsKeyDown(Keys.F1))
+            if (currentKBState.IsKeyDown(Keys.F1))
             {
                 exitingTheGame = true; 
             }
 
             // If you press F and instantiatingFullscreen = false, then it becomes = true and the game goes to fullscreen 
-            if (keyboard.IsKeyDown(Keys.F))
+            if (currentKBState.IsKeyDown(Keys.F))
             {
                 instantiatingFullscreen = true; 
             }
 
             // If you press F and instantiatingFullscreen = true, then it becomes = false and the game goes from fullscreen to windowed mode
-            if (instantiatingFullscreen = true && keyboard.IsKeyDown(Keys.F))
+            if (instantiatingFullscreen = true && currentKBState.IsKeyDown(Keys.F))
             {
                 instantiatingFullscreen = false; 
             }
 
             // If the player is holding down W, then the player 1's character goes upward until the button is released, then the character stops walking
-            if (keyboard.IsKeyDown(Keys.W))
+            if (currentKBState.IsKeyDown(Keys.W))
             { 
                 walkingUp = true;
             }
@@ -106,7 +108,7 @@ namespace Lbs.groupproject._2018_2019
             }
 
             // If the player is holding down A, then the player 1's character goes left until the button is released, then the character stops walking
-            if (keyboard.IsKeyDown(Keys.A))
+            if (currentKBState.IsKeyDown(Keys.A))
             {
                 walkingLeft = true;
             }
@@ -115,8 +117,8 @@ namespace Lbs.groupproject._2018_2019
                 walkingLeft = false;
             }
 
-            // If the player is holding down A, then the player 1's character goes left until the button is released, then the character stops walking
-            if (keyboard.IsKeyDown(Keys.S))
+            // If the player is holding down S, then the player 1's character goes left until the button is released, then the character stops walking
+            if (currentKBState.IsKeyDown(Keys.S))
             {
                 walkingDown = true;
             }
@@ -125,8 +127,8 @@ namespace Lbs.groupproject._2018_2019
                 walkingDown = false;
             }
 
-            // Håller du nere D så går din karaktär uppåt tills knappen släpps från tangenten, då slutar karaktären gå
-            if (keyboard.IsKeyDown(Keys.D))
+            // If the player is holding down D, then the player 1's character goes left until the button is released, then the character stops walking
+            if (currentKBState.IsKeyDown(Keys.D))
             {
                 walkingRight = true;
             }
@@ -136,11 +138,15 @@ namespace Lbs.groupproject._2018_2019
             }
 
             //
-            if (keyboard.IsKeyDown(Keys.J))
+            if (currentKBState.IsKeyDown(Keys.J) && previousKBState.IsKeyUp(Keys.J))
             {
                 actionButton = true;
             }
-
+            // 
+            else if (currentKBState.IsKeyUp(Keys.J) && previousKBState.IsKeyDown(Keys.J))
+            {
+                actionButton = false;
+            }
 
         }
 
