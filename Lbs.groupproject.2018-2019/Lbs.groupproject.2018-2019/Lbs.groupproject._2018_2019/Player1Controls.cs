@@ -38,7 +38,7 @@ namespace Lbs.groupproject._2018_2019
         public static bool actionButton = false; 
         
         /// <summary>
-        /// A bool that is used to check if any player is holding down the "F1" button. Used to close down the game when the button is pressed
+        /// A bool that is used to check if any player is holding down the "ESC" button. Used to close down the game when the button is pressed
         /// </summary>
         public static bool exitingTheGame = false;
 
@@ -81,14 +81,14 @@ namespace Lbs.groupproject._2018_2019
             // The variable "previousKBState" is used to make sure that you only click a button once. This is done because previousKBState is one frame after currentKBState 
             previousKBState = currentKBState;
 
-            // If the player presses F1 then the game will close down (escape is often used as a tool to go back in the menu)
+            // If the player presses ESC then the game will close down 
             if (currentKBState.IsKeyDown(Keys.Escape))
             {
                 exitingTheGame = true; 
             }
 
             // If you press F and instantiatingFullscreen = false, then it becomes = true and the game goes to fullscreen 
-            if (currentKBState.IsKeyDown(Keys.F))
+            if (currentKBState.IsKeyDown(Keys.F) && previousKBState.IsKeyUp(Keys.J))
             {
                 instantiatingFullscreen = true; 
             }
@@ -96,7 +96,7 @@ namespace Lbs.groupproject._2018_2019
             // If you press F and instantiatingFullscreen = true, then it becomes = false and the game goes from fullscreen to windowed mode
             if (instantiatingFullscreen = true && currentKBState.IsKeyDown(Keys.F))
             {
-                instantiatingFullscreen = false; 
+                instantiatingFullscreen = false;
             }
 
             // If the player is holding down W, then the player 1's character goes upward until the button is released, then the character stops walking
