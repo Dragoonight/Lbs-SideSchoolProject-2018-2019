@@ -56,7 +56,7 @@ namespace Lbs.groupproject._2018_2019
         /// <summary>
         /// previousKBState is a KeyboardState that is equal to currentKBState. It is used to make buttons single presses 
         /// </summary>
-        private KeyBoardState previousKBState;
+        private KeyboardState previousKBState;
 
         
         /// <summary>
@@ -73,15 +73,14 @@ namespace Lbs.groupproject._2018_2019
         public void CheckUser1Input (GameTime gameTime)
         {          
             // Defines gamePad as a GamePadState so you can use it to map controls on a controller    
-            GamePadState gamePad = GamePad.GetState(PlayerIndex.One);
-
-            // The variable "previousKBState" is used to make sure that you only click a button once. This is done because previousKBState is one frame after currentKBState 
-            previousKBState = currentKBState;
+            GamePadState gamePad = GamePad.GetState(PlayerIndex.One);         
 
             // Defines currentKBState as a KeyboardState so you can use it to map controls on a controller       
             KeyboardState currentKBState = Keyboard.GetState();
 
-            
+            // The variable "previousKBState" is used to make sure that you only click a button once. This is done because previousKBState is one frame after currentKBState 
+            previousKBState = currentKBState;
+
             // If the player presses F1 then the game will close down (escape is often used as a tool to go back in the menu)
             if (currentKBState.IsKeyDown(Keys.F1))
             {
