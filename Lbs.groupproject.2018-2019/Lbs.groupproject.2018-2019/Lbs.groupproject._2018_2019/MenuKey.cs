@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework.Input;
 
-namespace Missile_Master_2
+namespace Lbs.groupproject._2018_2019
 {
     /// <summary>
     ///     An object used in MenuControls,
