@@ -10,67 +10,67 @@ namespace Lbs.groupproject._2018_2019
     /// <summary>
     /// This class is used to check the player 1's keyboard input 
     /// </summary>
-    public class Player1Controls
+    public static class Player1Controls
     {
         /// <summary>
         /// A bool that is used to check if player 1 is actively holding in "W" on their keyboard. Used to make the player walk up when the button is pressed
         /// </summary>
-        public bool walkingUp = false;
+        public static bool walkingUp = false;
 
         /// <summary>
         /// A bool that is used to check if player 1 is actively holding in "A" on their keyboard. Used to make the player walk left when the button is pressed
         /// </summary>
-        public bool walkingLeft = false;
+        public static bool walkingLeft = false;
 
         /// <summary>
         /// A bool that is used to check if player 1 is actively holding in "S" on their keyboard. Used to make the player walk down when the button is pressed
         /// </summary>
-        public bool walkingDown = false;
+        public static bool walkingDown = false;
         
         /// <summary>
         /// A bool that is used to check if player 1 is actively holding in "D" on their keyboard. Used to make the player walk right when the button is pressed
         /// </summary>
-        public bool walkingRight = false;
+        public static bool walkingRight = false;
 
         /// <summary>
         /// A bool that is used to check if player 1 is actively holding in "J" on their keyboard. Used to make the player perform an action when the button is pressed
         /// </summary>
-        public bool actionButton = false; 
+        public static bool actionButton = false; 
         
         /// <summary>
         /// A bool that is used to check if any player is holding down the "F1" button. Used to close down the game when the button is pressed
         /// </summary>
-        public bool exitingTheGame = false;
+        public static bool exitingTheGame = false;
 
         /// <summary>
         /// A bool that is used to check if any player is holding down the "F" button. Used to fullscreen the window when the button is pressed, and window the fullscreen when pressed again 
         /// </summary>
-        public bool instantiatingFullscreen = false;
+        public static bool instantiatingFullscreen = false;
 
         /// <summary>
         /// CurrentKBState is a KeyboardState that is used to check the player inputs on their keyboard 
         /// </summary>
-        private KeyboardState currentKBState;
+        private static KeyboardState currentKBState;
 
 
         /// <summary>
         /// previousKBState is a KeyboardState that is equal to currentKBState. It is used to make buttons single presses 
         /// </summary>
-        private KeyboardState previousKBState;
+        private static KeyboardState previousKBState;
 
         
         /// <summary>
         ///  Player1Controls is the constructor for the respective class 
         /// </summary>
-        public Player1Controls ()
-            {
-            }
+        //public static Player1Controls ()
+         //   {
+           // }
        
         /// <summary>
         /// Checks player 1's keyboard input to see if they have a button pressed on the keyboard 
         /// </summary>
         /// <param name="gameTime">gameTime is used to update the game continuously </param>
-        public void CheckUser1Input (GameTime gameTime)
+        public static void CheckUser1Input (GameTime gameTime)
         {          
             // Defines gamePad as a GamePadState so you can use it to map controls on a controller    
             GamePadState gamePad = GamePad.GetState(PlayerIndex.One);         
@@ -82,7 +82,7 @@ namespace Lbs.groupproject._2018_2019
             previousKBState = currentKBState;
 
             // If the player presses F1 then the game will close down (escape is often used as a tool to go back in the menu)
-            if (currentKBState.IsKeyDown(Keys.F1))
+            if (currentKBState.IsKeyDown(Keys.Escape))
             {
                 exitingTheGame = true; 
             }

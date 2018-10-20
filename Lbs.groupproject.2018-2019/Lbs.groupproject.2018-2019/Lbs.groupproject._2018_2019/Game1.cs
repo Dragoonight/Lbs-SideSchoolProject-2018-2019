@@ -19,7 +19,7 @@ namespace Lbs.groupproject._2018_2019
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Player1Controls p1Controls;
+      
        
         public Game1()
         {
@@ -69,17 +69,17 @@ namespace Lbs.groupproject._2018_2019
         protected override void Update(GameTime gameTime)
         {
             // TODO: Add your update logic here
-            p1Controls.CheckUser1Input(gameTime)
+            Player1Controls.CheckUser1Input(gameTime);
 
 
             // Closes down the game if the player presses F1
-            if (p1Controls.exitingTheGame == true)
+            if (Player1Controls.exitingTheGame == true)
             {
                 this.Exit(); 
             }
             
             // The game goes into fullscreen if the player presses f
-            if (p1Controls.instantiatingFullscreen == true)
+            if (Player1Controls.instantiatingFullscreen == true)
             {
                 graphics.IsFullScreen = !graphics.IsFullScreen;
                 graphics.ApplyChanges();
