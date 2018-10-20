@@ -19,6 +19,8 @@ namespace Lbs.groupproject._2018_2019
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        Player1Controls p1Controls;
+       
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -66,11 +68,20 @@ namespace Lbs.groupproject._2018_2019
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
-
             // TODO: Add your update logic here
+
+            // Closes down the game if the player presses F1
+            if (p1Controls.exitingTheGame == true)
+            {
+                this.Exit(); 
+            }
+            
+            // The game goes into fullscreen if the player presses f
+            if (p1Controls.instantiatingFullscreen == true)
+            {
+                graphics.IsFullScreen = !graphics.IsFullScreen;
+                graphics.ApplyChanges();
+            }
 
             base.Update(gameTime);
         }
