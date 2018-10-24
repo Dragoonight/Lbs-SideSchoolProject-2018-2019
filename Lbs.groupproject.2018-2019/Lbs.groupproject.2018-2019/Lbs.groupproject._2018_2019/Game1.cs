@@ -69,7 +69,7 @@ namespace Lbs.groupproject._2018_2019
         protected override void Update(GameTime gameTime)
         {
             // TODO: Add your update logic here
-            Player1Controls.CheckUser1Input(gameTime);
+            Player1Controls.CheckUserInput(gameTime);
 
 
             // Closes down the game if the player presses F1

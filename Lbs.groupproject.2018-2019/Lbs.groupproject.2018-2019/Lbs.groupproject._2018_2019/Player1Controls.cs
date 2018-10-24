@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -58,19 +58,12 @@ namespace Lbs.groupproject._2018_2019
         /// </summary>
         private static KeyboardState previousKBState;
 
-        
-        /// <summary>
-        ///  Player1Controls is the constructor for the respective class 
-        /// </summary>
-        //public static Player1Controls ()
-         //   {
-           // }
-       
+               
         /// <summary>
         /// Checks player 1's keyboard input to see if they have a button pressed on the keyboard 
         /// </summary>
         /// <param name="gameTime">gameTime is used to update the game continuously </param>
-        public static void CheckUser1Input (GameTime gameTime)
+        public static void CheckUserInput (GameTime gameTime)
         {          
             // Defines gamePad as a GamePadState so you can use it to map controls on a controller    
             GamePadState gamePad = GamePad.GetState(PlayerIndex.One);         
