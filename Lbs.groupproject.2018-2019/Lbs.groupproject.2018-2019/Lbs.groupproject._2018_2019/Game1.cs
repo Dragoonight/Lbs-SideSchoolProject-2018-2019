@@ -48,8 +48,9 @@ namespace Lbs.groupproject._2018_2019
             spriteBatch = new SpriteBatch(GraphicsDevice);
             
 
-            playerplus = new Player(Content.Load<Texture2D>(@"Textures/Test_Player"), Vector2.Zero, 20);
+            player1Sprite = (Content.Load<Texture2D>(@"Textures/Test_Player"));
 
+            playerplus = new Player (player1Sprite, playerplus.playerPosition, playerplus.playerSpeed);
         }
 
         /// <summary>
@@ -99,7 +100,7 @@ namespace Lbs.groupproject._2018_2019
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-            spriteBatch.Draw(player1Sprite, playerplus.Position, Color.White);
+            playerplus.Draw(spriteBatch);
             
             spriteBatch.End();
 

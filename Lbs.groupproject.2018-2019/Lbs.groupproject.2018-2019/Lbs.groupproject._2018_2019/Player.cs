@@ -12,7 +12,7 @@ namespace Lbs.groupproject._2018_2019
     class Player
     {
         public float playerSpeed = 1.0f;
-        public Vector2 playerPosition = new Vector2(100, 100);
+        public Vector2 playerPosition = new Vector2 (100, 100);
         public Texture2D playerSprite;
         public Rectangle playerRectangle;
 
@@ -64,7 +64,7 @@ namespace Lbs.groupproject._2018_2019
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            
+            spriteBatch.Draw(playerSprite, playerPosition, Color.White);
         }
 
 
