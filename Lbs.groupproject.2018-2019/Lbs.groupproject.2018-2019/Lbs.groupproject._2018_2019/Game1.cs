@@ -46,12 +46,10 @@ namespace Lbs.groupproject._2018_2019
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            
 
+            playerplus = new Player(Content.Load<Texture2D>(@"Textures/Test_Player"), Vector2.Zero, 20);
 
-            player1Sprite = Content.Load<Texture2D>(@"Textures/Test_Player");
-
-
-            playerplus = new Player(player1Sprite, Vector2.Zero, 20);
         }
 
         /// <summary>
@@ -101,7 +99,7 @@ namespace Lbs.groupproject._2018_2019
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-            playerplus.Draw(spriteBatch);
+            spriteBatch.Draw(player1Sprite, playerplus.Position, Color.White);
             
             spriteBatch.End();
 

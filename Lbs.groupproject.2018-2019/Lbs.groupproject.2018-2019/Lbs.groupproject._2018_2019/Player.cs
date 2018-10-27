@@ -64,6 +64,7 @@ namespace Lbs.groupproject._2018_2019
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            
         }
 
 
