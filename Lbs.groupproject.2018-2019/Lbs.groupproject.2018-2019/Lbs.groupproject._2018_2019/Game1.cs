@@ -19,27 +19,17 @@ namespace Lbs.groupproject._2018_2019
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-      
-       
+        Texture2D player1Sprite;
+
+        Player playerplus;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
 
-
         
-
-
-        Texture2D player1Sprite;
-
-
-        
-
-
-
-
-
 
         protected override void Initialize()
         {
@@ -61,7 +51,7 @@ namespace Lbs.groupproject._2018_2019
             player1Sprite = Content.Load<Texture2D>(@"Textures/Test_Player");
 
 
-            Player player1 = new Player(player1Sprite, Vector2.Zero, 20);
+            playerplus = new Player(player1Sprite, Vector2.Zero, 20);
         }
 
         /// <summary>
@@ -111,7 +101,8 @@ namespace Lbs.groupproject._2018_2019
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-            player.Draw(spriteBatch);
+            playerplus.Draw(spriteBatch);
+            
             spriteBatch.End();
 
             base.Draw(gameTime);
