@@ -27,12 +27,20 @@ namespace Lbs.groupproject._2018_2019
             Content.RootDirectory = "Content";
         }
 
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
+
+        
+
+
+        Texture2D player1Sprite;
+
+
+        
+
+
+
+
+
+
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
@@ -49,7 +57,11 @@ namespace Lbs.groupproject._2018_2019
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+
+            player1Sprite = Content.Load<Texture2D>(@"Textures/Test_Player");
+
+
+            Player player1 = new Player(player1Sprite, Vector2.Zero, 20);
         }
 
         /// <summary>
@@ -85,6 +97,8 @@ namespace Lbs.groupproject._2018_2019
                 graphics.ApplyChanges();
             }
 
+
+
             base.Update(gameTime);
         }
 
@@ -96,7 +110,9 @@ namespace Lbs.groupproject._2018_2019
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            player.Draw(spriteBatch);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }

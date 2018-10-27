@@ -12,10 +12,9 @@ namespace Lbs.groupproject._2018_2019
     class Player
     {
         public float playerSpeed = 1.0f;
-        public Vector2 position;
+        public Vector2 playerPosition = new Vector2(100, 100);
         public Texture2D playerSprite;
-        public Rectangle playeRectangle;
-        public Player1Controls playerControls;
+        public Rectangle playerRectangle;
 
 
         // Communicating between Class and MainCodePage
@@ -27,8 +26,8 @@ namespace Lbs.groupproject._2018_2019
 
         public Vector2 Position
         {
-            get { return position; }
-            set { position = value; }
+            get { return playerPosition; }
+            set { playerPosition = value; }
         }
 
         public Texture2D Texture
@@ -42,18 +41,29 @@ namespace Lbs.groupproject._2018_2019
         public Player(Texture2D texture, Vector2 position, float speed)
         {
 
-        }
 
+        }
+        
 
         public void Update(GameTime gameTime, Rectangle windowsize)
         {
             
+            if (Player1Controls.walkingUp == true)
+                playerPosition.Y -= playerSpeed;
+
+            if (Player1Controls.walkingDown == true)
+                playerPosition.Y += playerSpeed;
+
+            if (Player1Controls.walkingRight == true)
+                playerPosition.X += playerSpeed;
+
+            if (Player1Controls.walkingDown == true)
+                playerPosition.X -= playerSpeed;
         }
 
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            
         }
 
 
