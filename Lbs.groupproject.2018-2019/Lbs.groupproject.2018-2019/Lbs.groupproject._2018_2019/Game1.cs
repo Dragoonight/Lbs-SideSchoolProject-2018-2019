@@ -19,20 +19,18 @@ namespace Lbs.groupproject._2018_2019
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-      
-       
+        Texture2D player1Sprite;
+
+        Player playerplus;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
 
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
+        
+
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
@@ -48,8 +46,11 @@ namespace Lbs.groupproject._2018_2019
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            
 
-            // TODO: use this.Content to load your game content here
+            player1Sprite = (Content.Load<Texture2D>(@"Textures/Test_Player"));
+
+            playerplus = new Player (player1Sprite, playerplus.playerPosition, playerplus.playerSpeed);
         }
 
         /// <summary>
@@ -69,7 +70,7 @@ namespace Lbs.groupproject._2018_2019
         protected override void Update(GameTime gameTime)
         {
             // TODO: Add your update logic here
-            Player1Controls.CheckUser1Input(gameTime);
+            Player1Controls.CheckUserInput(gameTime);
 
 
             // Closes down the game if the player presses F1
@@ -85,6 +86,8 @@ namespace Lbs.groupproject._2018_2019
                 graphics.ApplyChanges();
             }
 
+
+
             base.Update(gameTime);
         }
 
@@ -96,7 +99,10 @@ namespace Lbs.groupproject._2018_2019
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            playerplus.Draw(spriteBatch);
+            
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
