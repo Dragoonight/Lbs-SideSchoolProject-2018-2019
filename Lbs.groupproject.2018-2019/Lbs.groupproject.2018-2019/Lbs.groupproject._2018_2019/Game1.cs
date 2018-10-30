@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
@@ -20,13 +21,15 @@ namespace Lbs.groupproject._2018_2019
         SpriteBatch spriteBatch;
 
         public static Point ScreenBounds = new Point(1280, 720);
-
-        #region Things to be moved later to InGame.cs
-
-        static public MovableBackground background1;
-
-        #endregion
         
+        public enum GameStates
+        {
+            MainMenu,
+            InGame
+        }
+
+        // Starting gamestate
+        public GameStates GameState = GameStates.InGame;
 
         public Game1()
         {
@@ -52,10 +55,8 @@ namespace Lbs.groupproject._2018_2019
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            // Load Players
-            PlayerManager.LoadContent(Content);
-            
-            background1 = new MovableBackground(Content.Load<Texture2D>(@"Textures/Test_Background"), new Rectangle(0, 0, ScreenBounds.X / 2, ScreenBounds.Y / 2));
+
+            InGame.LoadContent(Content);
         }
 
         /// <summary>
@@ -74,8 +75,21 @@ namespace Lbs.groupproject._2018_2019
         protected override void Update(GameTime gameTime)
         {
             PlayerControls.CheckUniversalInput();
-            PlayerManager.Update(gameTime);
-            background1.Update();
+
+            switch (GameState)
+            {
+                //case GameStates.MainMenu:
+                //    MainMenu.Update();
+                //    break;
+
+
+                case GameStates.InGame:
+                    InGame.Update(gameTime);
+                    break;
+
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
 
             // End exits the game
             if (PlayerControls.Exit)
@@ -99,11 +113,25 @@ namespace Lbs.groupproject._2018_2019
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.White);
 
             spriteBatch.Begin();
-            background1.Draw(spriteBatch);
-            PlayerManager.Draw(spriteBatch);
+
+            switch (GameState)
+            {
+                //case GameStates.MainMenu:
+                //    MainMenu.Update();
+                //    break;
+
+
+                case GameStates.InGame:
+                    InGame.Draw(spriteBatch);
+                    break;
+
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
             spriteBatch.End();
 
             base.Draw(gameTime);

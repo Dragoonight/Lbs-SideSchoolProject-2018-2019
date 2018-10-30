@@ -60,7 +60,7 @@ namespace Lbs.groupproject._2018_2019
             }
 
             // If player 2 is alive
-            if (player1.IsAlive)
+            if (player2.IsAlive)
             {
                 // check player 2´s input
                 PlayerControls.CheckPlayer2Input();
@@ -91,12 +91,14 @@ namespace Lbs.groupproject._2018_2019
             // Bottom bounding
             if (playerBoundigRectangle.Height - player1.collidableObject.Position.Y  < 0)
             {
+                InGame.background1.MoveBackground(new Point((int)((player1.collidableObject.Position.Y - playerBoundigRectangle.Height) - player1.collidableObject.Position.Y) * -1, 0));
                 player1.collidableObject.Position.Y -= player1.collidableObject.Position.Y - playerBoundigRectangle.Height ;
             }
 
             // Right bounding
             if (playerBoundigRectangle.Width - player1.collidableObject.Position.X < 0)
             {
+                InGame.background1.MoveBackground(new Point((int)((player1.collidableObject.Position.X - playerBoundigRectangle.Width) - player1.collidableObject.Position.X) * -1, 0));
                 player1.collidableObject.Position.X -= player1.collidableObject.Position.X - playerBoundigRectangle.Width;
             }
         }

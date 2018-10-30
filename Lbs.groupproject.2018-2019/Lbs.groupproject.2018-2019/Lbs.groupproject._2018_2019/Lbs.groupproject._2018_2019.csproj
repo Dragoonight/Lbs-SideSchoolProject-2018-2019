@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="CollidableObject.cs" />
     <None Include="Enemy.cs" />
+    <Compile Include="InGame.cs" />
     <Compile Include="MovableBackground.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayerControls.cs" />
