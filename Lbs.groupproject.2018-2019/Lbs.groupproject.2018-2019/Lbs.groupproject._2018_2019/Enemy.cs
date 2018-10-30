@@ -24,12 +24,8 @@ namespace Lbs.groupproject._2018_2019
         /// </summary>
         public Vector2 InWorldPosition;
 
-        /// <summary>
-        /// Texture used when Enemy is alive
-        /// </summary>
-        private readonly Texture2D aliveTexture2D;
 
-        public bool IsEnemyDead;
+        public bool isAlive;
 
 
         /// <summary>
@@ -38,24 +34,14 @@ namespace Lbs.groupproject._2018_2019
         /// <param name="aliveTexture2D">Texture for enemy when alive</param>
         /// <param name="deadTexture2D">Texture for enemy when dead</param>
         /// <param name="spawnPosition">The spawn position of the object</param>
-        public Enemy(Texture2D aliveTexture2D, Texture2D deadTexture2D, Vector2 spawnPosition)
+        public Enemy(Texture2D texture, Vector2 spawnPosition)
         {
+
 
             InWorldPosition = spawnPosition;
-            aliveTexture2D = aliveTexture2D;
             // Create a new CollidableObject with alive texture and spawn
-            CollidableObject = new CollidableObject(aliveTexture2D, spawnPosition);
-            // Logging statement
-            // Console.WriteLine("Created a new enemy with position of " + CollidableObject.Position);
-        }
-
-        /// <summary>
-        /// Reset Enemy, ie. position, texture etc.
-        /// </summary>
-        public void Reset()
-        {
-            // Change texture
-            CollidableObject.LoadTexture(_aliveTexture2D);
+            CollidableObject = new CollidableObject(texture, spawnPosition);
+            //EnemyManager.AddEnemy(out this);
         }
 
         /// <summary>
@@ -65,8 +51,8 @@ namespace Lbs.groupproject._2018_2019
         public void Update(GameTime gameTime)
         {
             // Moves object relative to player by subtracting upper-left coordinate of the background to the object´s position in world
-            CollidableObject.Position.X = InWorldPosition.X - InGame.MovableBackground.SourceRectangle.Location.X;
-            CollidableObject.Position.Y = InWorldPosition.Y - InGame.MovableBackground.SourceRectangle.Location.Y;
+            CollidableObject.Position.X = InWorldPosition.X - InGame.movableBackground.SourceRectangle.Location.X;
+            CollidableObject.Position.Y = InWorldPosition.Y - InGame.movableBackground.SourceRectangle.Location.Y;
         }
 
         public void Draw(SpriteBatch spriteBatch)

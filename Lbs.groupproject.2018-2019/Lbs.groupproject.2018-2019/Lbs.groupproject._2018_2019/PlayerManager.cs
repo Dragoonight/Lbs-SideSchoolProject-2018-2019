@@ -51,27 +51,24 @@ namespace Lbs.groupproject._2018_2019
         static public void Update(GameTime gameTime)
         {
             // If player 1 is alive
-            if (player1.IsAlive)
+            if (player1.isAlive)
             {
                 // Then check player 1´s input
                 PlayerControls.CheckPlayer1Input();
 
                 UpdatePlayer1Bounding();
+                player1.Update(gameTime);
             }
 
             // If player 2 is alive
-            if (player2.IsAlive)
+            if (player2.isAlive)
             {
                 // check player 2´s input
                 PlayerControls.CheckPlayer2Input();
                 
                 UpdatePlayer2Bounding();
+                player2.Update(gameTime);
             }
-
-            // Update players logic
-            player1.Update(gameTime);
-            player2.Update(gameTime);
-
         }
 
         private static void UpdatePlayer1Bounding()
@@ -79,37 +76,40 @@ namespace Lbs.groupproject._2018_2019
             // Left bounding
             if (player1.collidableObject.Position.X < playerBoundigRectangle.X)
             {
-                // Move Background
-                InGame.background1.MoveBackground(new Point((int)(player1.collidableObject.Position.X - playerBoundigRectangle.X), 0));
+                if (!InGame.movableBackground.IsSourceMinX)
+                {
+                    // Move Background
+                    InGame.movableBackground.MoveBackground(new Point((int)(player1.collidableObject.Position.X - playerBoundigRectangle.X), 0));                    
+                }
                 // Move Player
-                player1.collidableObject.Position.X -= player1.collidableObject.Position.X - playerBoundigRectangle.X;
+                player1.inWorldPosition.X -= player1.collidableObject.Position.X - playerBoundigRectangle.X;
             }
 
             // Top bounding
             if (player1.collidableObject.Position.Y < playerBoundigRectangle.Y)
             {
                 // Move Background
-                InGame.background1.MoveBackground(new Point(0, (int)(player1.collidableObject.Position.Y - playerBoundigRectangle.Y)));
+                InGame.movableBackground.MoveBackground(new Point(0, (int)(player1.collidableObject.Position.Y - playerBoundigRectangle.Y)));
                 // Move Player
-                player1.collidableObject.Position.Y -= player1.collidableObject.Position.Y - playerBoundigRectangle.Y;
+                player1.inWorldPosition.Y -= player1.collidableObject.Position.Y - playerBoundigRectangle.Y;
             }
 
             // Bottom bounding
             if (playerBoundigRectangle.Height < player1.collidableObject.Position.Y)
             {
                 // Move Background
-                InGame.background1.MoveBackground(new Point(0, (int)(player1.collidableObject.Position.Y - playerBoundigRectangle.Height)));
+                InGame.movableBackground.MoveBackground(new Point(0, (int)(player1.collidableObject.Position.Y - playerBoundigRectangle.Height)));
                 // Move Player
-                player1.collidableObject.Position.Y -= player1.collidableObject.Position.Y - playerBoundigRectangle.Height ;
+                player1.inWorldPosition.Y -= player1.collidableObject.Position.Y - playerBoundigRectangle.Height;
             }
 
             // Right bounding
             if (playerBoundigRectangle.Width < player1.collidableObject.Position.X)
             {
                 // Move Background
-                InGame.background1.MoveBackground(new Point((int)( player1.collidableObject.Position.X - playerBoundigRectangle.Width) , 0));
+                InGame.movableBackground.MoveBackground(new Point((int)( player1.collidableObject.Position.X - playerBoundigRectangle.Width) , 0));
                 // Move Player
-                player1.collidableObject.Position.X -= player1.collidableObject.Position.X - playerBoundigRectangle.Width;
+                player1.inWorldPosition.X -= player1.collidableObject.Position.X - playerBoundigRectangle.Width;
             }
         }
 
@@ -119,79 +119,38 @@ namespace Lbs.groupproject._2018_2019
             if (player2.collidableObject.Position.X < playerBoundigRectangle.X)
             {
                 // Move Background
-                InGame.background1.MoveBackground(new Point((int)(player2.collidableObject.Position.X - playerBoundigRectangle.X), 0));
+                InGame.movableBackground.MoveBackground(new Point((int)(player2.collidableObject.Position.X - playerBoundigRectangle.X), 0));
                 // Move Player
-                player2.collidableObject.Position.X -= player2.collidableObject.Position.X - playerBoundigRectangle.X;
+                player2.inWorldPosition.X -= player2.collidableObject.Position.X - playerBoundigRectangle.X;
             }
 
             // Top bounding
             if (player2.collidableObject.Position.Y < playerBoundigRectangle.Y)
             {
                 // Move Background
-                InGame.background1.MoveBackground(new Point(0, (int)(player2.collidableObject.Position.Y - playerBoundigRectangle.Y)));
+                InGame.movableBackground.MoveBackground(new Point(0, (int)(player2.collidableObject.Position.Y - playerBoundigRectangle.Y)));
                 // Move Player
-                player2.collidableObject.Position.Y -= player2.collidableObject.Position.Y - playerBoundigRectangle.Y;
+                player2.inWorldPosition.Y -= player2.collidableObject.Position.Y - playerBoundigRectangle.Y;
             }
 
             // Bottom bounding
             if (playerBoundigRectangle.Height < player2.collidableObject.Position.Y)
             {
-                // Move Background
-                InGame.background1.MoveBackground(new Point(0, (int)(player2.collidableObject.Position.Y - playerBoundigRectangle.Height)));
+                // Move World
+                InGame.movableBackground.MoveBackground(new Point(0, (int)(player2.collidableObject.Position.Y - playerBoundigRectangle.Height)));
                 // Move Player
-                player2.collidableObject.Position.Y -= player2.collidableObject.Position.Y - playerBoundigRectangle.Height;
+                player2.inWorldPosition.Y -= player2.collidableObject.Position.Y - playerBoundigRectangle.Height;
             }
 
             // Right bounding
             if (playerBoundigRectangle.Width < player2.collidableObject.Position.X)
             {
                 // Move Background
-                InGame.background1.MoveBackground(new Point((int)(player2.collidableObject.Position.X - playerBoundigRectangle.Width), 0));
+                InGame.movableBackground.MoveBackground(new Point((int)(player2.collidableObject.Position.X - playerBoundigRectangle.Width), 0));
                 // Move Player
-                player2.collidableObject.Position.X -= player2.collidableObject.Position.X - playerBoundigRectangle.Width;
+                player2.inWorldPosition.X -= player2.collidableObject.Position.X - playerBoundigRectangle.Width;
             }
         }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="playerNumber">acceptable inputs 1 or 2</param>
-        public static void MoveWorld()
-        {
-            Point averagePlayerpositionDifferenceFromCenter = new Point(
-                // X
-                (Game1.ScreenBounds.X / 2) - ((int)player1.collidableObject.Position.X + (int)player2.collidableObject.Position.X / 2),
-                // Y
-                (Game1.ScreenBounds.Y / 2) - ((int)player1.collidableObject.Position.Y + (int)player2.collidableObject.Position.Y / 2)); 
-
-            
-
-            //Game1.background1.MoveBackground(new Point(
-            //    Game1.background1.SourceRectangle.Center.X - averagePlayerpositionDifferenceFromCenter.X,
-            //    Game1.background1.SourceRectangle.Center.Y - averagePlayerpositionDifferenceFromCenter.Y));
-
-            // Player 1 bounding, keeps player 1 from exiting the screen
-
-
-
-            Console.WriteLine(player1.collidableObject.Position);
-
-
-            //if (playerNumber == 1)
-            //{
-
-            //}
-            //else if (playerNumber == 2)
-            //{
-
-            //}
-            //else
-            //{
-            //    throw new ArgumentOutOfRangeException();
-            //}
-        }
-
 
         /// <summary>
         /// Draw Players

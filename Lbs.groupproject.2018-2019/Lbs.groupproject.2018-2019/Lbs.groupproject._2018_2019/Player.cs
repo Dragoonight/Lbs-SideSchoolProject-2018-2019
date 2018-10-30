@@ -12,7 +12,8 @@ namespace Lbs.groupproject._2018_2019
     class Player
     {
         private Vector2 velocity;
-        private Vector2 movementSpeed = Vector2.One;
+        private Vector2 movementSpeed = new Vector2(0.5f);
+        public Vector2 inWorldPosition;
 
         /// <summary>
         /// Contains position, texture, rotation, origin.
@@ -20,7 +21,7 @@ namespace Lbs.groupproject._2018_2019
         /// </summary>
         public CollidableObject collidableObject;
 
-        public bool IsAlive = true;
+        public bool isAlive = true;
 
         /// <summary>
         /// Constructs a new Player with a texture, position
@@ -29,22 +30,22 @@ namespace Lbs.groupproject._2018_2019
         /// <param name="position"></param>
         public Player(Texture2D texture, Vector2 position)
         {
+            inWorldPosition = position;
             //Create a new CollidableObject
             collidableObject = new CollidableObject(texture, position);
         }
         
         public void Update(GameTime gameTime)
         {
+            // Moves object by subtracting the upper-left coordinate of the background to the player´s position in world
+            collidableObject.Position.X = inWorldPosition.X - InGame.movableBackground.SourceRectangle.X;
+            collidableObject.Position.Y = inWorldPosition.Y - InGame.movableBackground.SourceRectangle.Y;
+
             // Update position
-            collidableObject.Position += velocity * gameTime.ElapsedGameTime.Milliseconds;
+            inWorldPosition += velocity * gameTime.ElapsedGameTime.Milliseconds;
             // Reset velocity
             velocity = Vector2.Zero;
 
-            //CollidableObject collidableObject2 = new CollidableObject(collidableObject.Texture, Vector2.One);
-            //if (collidableObject.IsColliding(collidableObject2))
-            //{
-            //    Die();
-            //}
         }
 
         /// <summary>
@@ -52,7 +53,7 @@ namespace Lbs.groupproject._2018_2019
         /// </summary>
         public void Die()
         {
-            IsAlive = false;
+            isAlive = false;
         }
 
         public void MoveUp()

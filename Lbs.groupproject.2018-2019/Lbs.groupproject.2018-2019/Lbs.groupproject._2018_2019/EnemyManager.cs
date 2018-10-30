@@ -9,16 +9,23 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Lbs.groupproject._2018_2019
 {
-    internal static class EnemyManager
+    static public class EnemyManager
     {
         /// <summary>
         /// List of all alive Enemies
         /// </summary>
         public static List<Enemy> Enemies = new List<Enemy>();
 
-        public static void AddEnemy(Enemy enemy)
+        private static Texture2D enemyTexture1;
+        
+        public static void AddEnemy(ref Enemy enemy)
         {
             Enemies.Add(enemy);
+        }
+
+        internal static void LoadContent(ContentManager content)
+        {
+            enemyTexture1 = content.Load<Texture2D>(@"Textures/Test_Enemy");
         }
 
         public static void ClearEnemies()
@@ -26,11 +33,11 @@ namespace Lbs.groupproject._2018_2019
             Enemies.Clear();
         }
 
-        public static bool CheckCollisionToPlayer()
+        public static bool CheckCollisionToAnyEnemy(CollidableObject collidableObject)
         {
             foreach (Enemy enemy in Enemies)
             {
-                if (enemy.CollidableObject.IsColliding(InGame.Player.CollidableObject))
+                if (enemy.CollidableObject.IsColliding(collidableObject))
                 {
                     return true;
                 }
