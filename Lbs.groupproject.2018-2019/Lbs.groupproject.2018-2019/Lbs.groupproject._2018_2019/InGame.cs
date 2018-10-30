@@ -25,7 +25,6 @@ namespace Lbs.groupproject._2018_2019
             PlayerManager.Update(gameTime);
             EnemyManager.Update(gameTime);
             movableBackground.Update();
-
         }
 
         /// <summary>

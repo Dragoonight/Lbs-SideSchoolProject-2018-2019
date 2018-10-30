@@ -51,8 +51,8 @@ namespace Lbs.groupproject._2018_2019
         public void Update(GameTime gameTime)
         {
             // Moves object relative to player by subtracting upper-left coordinate of the background to the object´s position in world
-            CollidableObject.Position.X = InWorldPosition.X - InGame.movableBackground.SourceRectangle.Location.X;
-            CollidableObject.Position.Y = InWorldPosition.Y - InGame.movableBackground.SourceRectangle.Location.Y;
+            CollidableObject.Position.X = InWorldPosition.X - InGame.movableBackground.SourceRectangle.X;
+            CollidableObject.Position.Y = InWorldPosition.Y - InGame.movableBackground.SourceRectangle.Y;
         }
 
         public void Draw(SpriteBatch spriteBatch)
