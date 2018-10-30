@@ -9,14 +9,17 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Lbs.groupproject._2018_2019
 {
-    internal static class EnemyManager
+    public class EnemyManager
     {
         /// <summary>
         /// List of all alive Enemies
         /// </summary>
-        public static List<Enemy> Enemies = new List<Enemy>();
+        /// 
+        CollidableObject CollidableObject;
 
-        public static void AddEnemy(Enemy enemy)
+        public static List<EnemyManager> Enemies = new List<EnemyManager>();
+
+        public static void AddEnemy(EnemyManager enemy)
         {
             Enemies.Add(enemy);
         }
@@ -28,7 +31,7 @@ namespace Lbs.groupproject._2018_2019
 
         public static bool CheckCollisionToPlayer()
         {
-            foreach (Enemy enemy in Enemies)
+            foreach (EnemyManager enemy in Enemies)
             {
                 if (enemy.CollidableObject.IsColliding(InGame.Player.CollidableObject))
                 {
@@ -39,17 +42,17 @@ namespace Lbs.groupproject._2018_2019
             return false;
         }
 
-        public static void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
-            foreach (Enemy enemy in Enemies)
+            foreach (EnemyManager enemy in Enemies)
             {
                 enemy.Update(gameTime);
             }
         }
 
-        public static void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (Enemy enemy in Enemies)
+            foreach (EnemyManager enemy in Enemies)
             {
                 enemy.Draw(spriteBatch);
             }
