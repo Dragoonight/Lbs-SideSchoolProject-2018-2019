@@ -63,7 +63,6 @@ namespace Lbs.groupproject._2018_2019
             player1.Update(gameTime);
             // player2.Update(gameTime);
 
-            player1.collidableObject.Position
         }
 
 

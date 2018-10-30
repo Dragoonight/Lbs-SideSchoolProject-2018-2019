@@ -101,8 +101,8 @@ namespace Lbs.groupproject._2018_2019
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-            PlayerManager.Draw(spriteBatch);
             background1.Draw(spriteBatch);
+            PlayerManager.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);
