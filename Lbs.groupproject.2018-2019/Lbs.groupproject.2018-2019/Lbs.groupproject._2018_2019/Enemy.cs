@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Missile_Master_2
+namespace Lbs.groupproject._2018_2019
 {
     internal class Enemy
     {
@@ -16,7 +16,7 @@ namespace Missile_Master_2
         /// <summary>
         /// Standard spawning position
         /// </summary>
-        private Vector2 _spawnPosition;
+        private Vector2 spawnPosition;
 
         // TODO: targeting AI
         /// <summary>
@@ -27,12 +27,8 @@ namespace Missile_Master_2
         /// <summary>
         /// Texture used when Enemy is alive
         /// </summary>
-        private readonly Texture2D _aliveTexture2D;
+        private readonly Texture2D aliveTexture2D;
 
-        /// <summary>
-        /// Texture used when Enemy is dead
-        /// </summary>
-        private readonly Texture2D _deadTexture2D;
 
         public bool IsEnemyDead;
 
@@ -46,20 +42,11 @@ namespace Missile_Master_2
         {
 
             InWorldPosition = spawnPosition;
-            _aliveTexture2D = aliveTexture2D;
-            _deadTexture2D = deadTexture2D;
+            aliveTexture2D = aliveTexture2D;
             // Create a new CollidableObject with alive texture and spawn
             CollidableObject = new CollidableObject(aliveTexture2D, spawnPosition);
             // Logging statement
             // Console.WriteLine("Created a new enemy with position of " + CollidableObject.Position);
-        }
-
-        public void Explode()
-        {
-            // Reset rotation
-            CollidableObject.Rotation = 0.0f;
-            // Change texture
-            CollidableObject.LoadTexture(_deadTexture2D);
         }
 
         /// <summary>

@@ -19,9 +19,14 @@ namespace Lbs.groupproject._2018_2019
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Texture2D player1Sprite;
+        public static Point ScreenBounds = new Point(1280, 720);
 
-        Player playerplus;
+        #region Things to be moved later to InGame.cs
+
+        static public MovableBackground background1;
+
+        #endregion
+
 
         public Game1()
         {
@@ -29,11 +34,12 @@ namespace Lbs.groupproject._2018_2019
             Content.RootDirectory = "Content";
         }
 
-        
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            graphics.PreferredBackBufferWidth = ScreenBounds.X;
+            graphics.PreferredBackBufferHeight = ScreenBounds.Y;
+            graphics.ApplyChanges();
 
             base.Initialize();
         }
@@ -46,11 +52,10 @@ namespace Lbs.groupproject._2018_2019
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            
+            // Load Players
+            PlayerManager.LoadContent(Content);
 
-            player1Sprite = (Content.Load<Texture2D>(@"Textures/Test_Player"));
-
-            playerplus = new Player (player1Sprite, playerplus.playerPosition, playerplus.playerSpeed);
+            background1 = new MovableBackground(Content.Load<Texture2D>(@"Textures/Test_Background"), new Rectangle(0, 0, ScreenBounds.X / 2, ScreenBounds.Y / 2));
         }
 
         /// <summary>
@@ -59,7 +64,6 @@ namespace Lbs.groupproject._2018_2019
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
         }
 
         /// <summary>
@@ -69,24 +73,21 @@ namespace Lbs.groupproject._2018_2019
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // TODO: Add your update logic here
-            Player1Controls.CheckUserInput(gameTime);
+            PlayerControls.CheckUniversalInput();
+            PlayerManager.Update(gameTime);
+            background1.Update();
 
-
-            // Closes down the game if the player presses F1
-            if (Player1Controls.exitingTheGame == true)
+            // End exits the game
+            if (PlayerControls.Exit)
             {
-                this.Exit(); 
+                Exit();
             }
-            
-            // The game goes into fullscreen if the player presses f
-            if (Player1Controls.instantiatingFullscreen == true)
+
+            if (PlayerControls.ToggleFullscreen)
             {
                 graphics.IsFullScreen = !graphics.IsFullScreen;
                 graphics.ApplyChanges();
             }
-
-
 
             base.Update(gameTime);
         }
@@ -100,8 +101,8 @@ namespace Lbs.groupproject._2018_2019
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-            playerplus.Draw(spriteBatch);
-            
+            background1.Draw(spriteBatch);
+            PlayerManager.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);

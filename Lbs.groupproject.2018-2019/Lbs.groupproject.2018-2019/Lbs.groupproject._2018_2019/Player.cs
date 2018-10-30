@@ -11,64 +11,73 @@ namespace Lbs.groupproject._2018_2019
 {
     class Player
     {
-        public float playerSpeed = 1.0f;
-        public Vector2 playerPosition = new Vector2 (100, 100);
-        public Texture2D playerSprite;
-        public Rectangle playerRectangle;
+        private Vector2 velocity;
+        private Vector2 movementSpeed = Vector2.One;
 
+        /// <summary>
+        /// Contains position, texture, rotation, origin.
+        /// Handles bounding rectangles and collision checks.
+        /// </summary>
+        public CollidableObject collidableObject;
 
-        // Communicating between Class and MainCodePage
-        public float Speed
+        public bool IsAlive = true;
+
+        /// <summary>
+        /// Constructs a new Player with a texture, position
+        /// </summary>
+        /// <param name="texture"></param>
+        /// <param name="position"></param>
+        public Player(Texture2D texture, Vector2 position)
         {
-            get { return playerSpeed; }
-            set { playerSpeed = value; }
-        }
-
-        public Vector2 Position
-        {
-            get { return playerPosition; }
-            set { playerPosition = value; }
-        }
-
-        public Texture2D Texture
-        {
-            get { return playerSprite; }
-            set { playerSprite = value; }
-        }
-
-
-        // Constructor
-        public Player(Texture2D texture, Vector2 position, float speed)
-        {
-
-
+            //Create a new CollidableObject
+            collidableObject = new CollidableObject(texture, position);
         }
         
-
-        public void Update(GameTime gameTime, Rectangle windowsize)
+        public void Update(GameTime gameTime)
         {
-            
-            if (Player1Controls.walkingUp == true)
-                playerPosition.Y -= playerSpeed;
+            // Update position
+            collidableObject.Position += velocity * gameTime.ElapsedGameTime.Milliseconds;
+            // Reset velocity
+            velocity = Vector2.Zero;
+        }
 
-            if (Player1Controls.walkingDown == true)
-                playerPosition.Y += playerSpeed;
+        /// <summary>
+        /// Kill the player
+        /// </summary>
+        public void Die()
+        {
+            IsAlive = false;
+        }
 
-            if (Player1Controls.walkingRight == true)
-                playerPosition.X += playerSpeed;
+        public void MoveUp()
+        {
+            velocity.Y = -movementSpeed.Y;
+        }
 
-            if (Player1Controls.walkingDown == true)
-                playerPosition.X -= playerSpeed;
+        public void MoveDown()
+        {
+            velocity.Y = movementSpeed.Y;
+        }
+
+        public void MoveRight()
+        {
+            velocity.X = movementSpeed.X;
+        }
+
+        public void MoveLeft()
+        {
+            velocity.X = -movementSpeed.X;
+        }
+
+        public void Attack()
+        {
+
         }
 
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(playerSprite, playerPosition, Color.White);
+            spriteBatch.Draw(collidableObject.Texture, collidableObject.Position, null, Color.White, collidableObject.Rotation, collidableObject.Origin, 1.0f, SpriteEffects.None, 0.0f);
         }
-
-
-
-
     }
 }
