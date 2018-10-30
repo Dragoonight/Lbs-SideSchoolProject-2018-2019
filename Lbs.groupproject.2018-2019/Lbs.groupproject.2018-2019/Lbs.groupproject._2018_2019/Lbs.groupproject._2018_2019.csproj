@@ -59,8 +59,10 @@
   <ItemGroup>
     <Compile Include="CollidableObject.cs" />
     <None Include="Enemy.cs" />
+    <Compile Include="MovableBackground.cs" />
     <Compile Include="Player.cs" />
-    <Compile Include="Player1Controls.cs" />
+    <Compile Include="PlayerControls.cs" />
+    <Compile Include="PlayerManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
