@@ -26,7 +26,7 @@ namespace Lbs.groupproject._2018_2019
         static public MovableBackground background1;
 
         #endregion
-
+        
 
         public Game1()
         {
@@ -54,7 +54,7 @@ namespace Lbs.groupproject._2018_2019
             spriteBatch = new SpriteBatch(GraphicsDevice);
             // Load Players
             PlayerManager.LoadContent(Content);
-
+            
             background1 = new MovableBackground(Content.Load<Texture2D>(@"Textures/Test_Background"), new Rectangle(0, 0, ScreenBounds.X / 2, ScreenBounds.Y / 2));
         }
 
@@ -88,10 +88,11 @@ namespace Lbs.groupproject._2018_2019
                 graphics.IsFullScreen = !graphics.IsFullScreen;
                 graphics.ApplyChanges();
             }
-
+            
+            
             base.Update(gameTime);
         }
-
+    
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
