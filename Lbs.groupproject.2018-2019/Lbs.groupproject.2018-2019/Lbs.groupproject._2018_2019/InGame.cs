@@ -17,7 +17,7 @@ namespace Lbs.groupproject._2018_2019
             // Load Players
             PlayerManager.LoadContent(content);
 
-            background1 = new MovableBackground(content.Load<Texture2D>(@"Textures/Test_Background"), new Rectangle(0, 0, Game1.ScreenBounds.X / 2, Game1.ScreenBounds.Y / 2));
+            background1 = new MovableBackground(content.Load<Texture2D>(@"Textures/Test_Background"), new Rectangle(0, 0, Game1.ScreenBounds.X, Game1.ScreenBounds.Y));
 
         }
 

@@ -77,28 +77,38 @@ namespace Lbs.groupproject._2018_2019
         private static void UpdatePlayer1Bounding()
         {
             // Left bounding
-            if (player1.collidableObject.Position.X - playerBoundigRectangle.Location.X < 0)
+            if (player1.collidableObject.Position.X < playerBoundigRectangle.X)
             {
-                player1.collidableObject.Position.X -= player1.collidableObject.Position.X - playerBoundigRectangle.Location.X;
+                // Move Background
+                InGame.background1.MoveBackground(new Point((int)(player1.collidableObject.Position.X - playerBoundigRectangle.X), 0));
+                // Move Player
+                player1.collidableObject.Position.X -= player1.collidableObject.Position.X - playerBoundigRectangle.X;
             }
 
             // Top bounding
-            if (player1.collidableObject.Position.Y - playerBoundigRectangle.Location.Y < 0)
+            if (player1.collidableObject.Position.Y < playerBoundigRectangle.Y)
             {
-                player1.collidableObject.Position.Y -= player1.collidableObject.Position.Y - playerBoundigRectangle.Location.Y;
+                // Move Background
+                InGame.background1.MoveBackground(new Point(0, (int)(player1.collidableObject.Position.Y - playerBoundigRectangle.Y)));
+                // Move Player
+                player1.collidableObject.Position.Y -= player1.collidableObject.Position.Y - playerBoundigRectangle.Y;
             }
 
             // Bottom bounding
-            if (playerBoundigRectangle.Height - player1.collidableObject.Position.Y  < 0)
+            if (playerBoundigRectangle.Height < player1.collidableObject.Position.Y)
             {
-                InGame.background1.MoveBackground(new Point((int)((player1.collidableObject.Position.Y - playerBoundigRectangle.Height) - player1.collidableObject.Position.Y) * -1, 0));
+                // Move Background
+                InGame.background1.MoveBackground(new Point(0, (int)(player1.collidableObject.Position.Y - playerBoundigRectangle.Height)));
+                // Move Player
                 player1.collidableObject.Position.Y -= player1.collidableObject.Position.Y - playerBoundigRectangle.Height ;
             }
 
             // Right bounding
-            if (playerBoundigRectangle.Width - player1.collidableObject.Position.X < 0)
+            if (playerBoundigRectangle.Width < player1.collidableObject.Position.X)
             {
-                InGame.background1.MoveBackground(new Point((int)((player1.collidableObject.Position.X - playerBoundigRectangle.Width) - player1.collidableObject.Position.X) * -1, 0));
+                // Move Background
+                InGame.background1.MoveBackground(new Point((int)( player1.collidableObject.Position.X - playerBoundigRectangle.Width) , 0));
+                // Move Player
                 player1.collidableObject.Position.X -= player1.collidableObject.Position.X - playerBoundigRectangle.Width;
             }
         }
@@ -106,26 +116,38 @@ namespace Lbs.groupproject._2018_2019
         private static void UpdatePlayer2Bounding()
         {
             // Left bounding
-            if (player2.collidableObject.Position.X - playerBoundigRectangle.Location.X < 0)
+            if (player2.collidableObject.Position.X < playerBoundigRectangle.X)
             {
-                player2.collidableObject.Position.X -= player2.collidableObject.Position.X - playerBoundigRectangle.Location.X;
+                // Move Background
+                InGame.background1.MoveBackground(new Point((int)(player2.collidableObject.Position.X - playerBoundigRectangle.X), 0));
+                // Move Player
+                player2.collidableObject.Position.X -= player2.collidableObject.Position.X - playerBoundigRectangle.X;
             }
 
             // Top bounding
-            if (player2.collidableObject.Position.Y - playerBoundigRectangle.Location.Y < 0)
+            if (player2.collidableObject.Position.Y < playerBoundigRectangle.Y)
             {
-                player2.collidableObject.Position.Y -= player2.collidableObject.Position.Y - playerBoundigRectangle.Location.Y;
+                // Move Background
+                InGame.background1.MoveBackground(new Point(0, (int)(player2.collidableObject.Position.Y - playerBoundigRectangle.Y)));
+                // Move Player
+                player2.collidableObject.Position.Y -= player2.collidableObject.Position.Y - playerBoundigRectangle.Y;
             }
 
             // Bottom bounding
-            if (playerBoundigRectangle.Height - player2.collidableObject.Position.Y < 0)
+            if (playerBoundigRectangle.Height < player2.collidableObject.Position.Y)
             {
+                // Move Background
+                InGame.background1.MoveBackground(new Point(0, (int)(player2.collidableObject.Position.Y - playerBoundigRectangle.Height)));
+                // Move Player
                 player2.collidableObject.Position.Y -= player2.collidableObject.Position.Y - playerBoundigRectangle.Height;
             }
 
             // Right bounding
-            if (playerBoundigRectangle.Width - player2.collidableObject.Position.X < 0)
+            if (playerBoundigRectangle.Width < player2.collidableObject.Position.X)
             {
+                // Move Background
+                InGame.background1.MoveBackground(new Point((int)(player2.collidableObject.Position.X - playerBoundigRectangle.Width), 0));
+                // Move Player
                 player2.collidableObject.Position.X -= player2.collidableObject.Position.X - playerBoundigRectangle.Width;
             }
         }
