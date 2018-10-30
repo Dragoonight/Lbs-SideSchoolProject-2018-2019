@@ -99,7 +99,7 @@ namespace Lbs.groupproject._2018_2019
             // Since previousKBState is one update after currentKBState this will make it a single press.
             if (currentKBState.IsKeyDown(Keys.E) && previousKBState.IsKeyUp(Keys.E))
             {
-                PlayerManager.player1.MoveUp();
+                //Attack function
             }
         }
 

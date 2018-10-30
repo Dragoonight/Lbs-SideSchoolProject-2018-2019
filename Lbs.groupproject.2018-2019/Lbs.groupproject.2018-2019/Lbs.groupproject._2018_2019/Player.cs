@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
@@ -40,11 +40,11 @@ namespace Lbs.groupproject._2018_2019
             // Reset velocity
             velocity = Vector2.Zero;
 
-            CollidableObject collidableObject2 = new CollidableObject(collidableObject.Texture, Vector2.One);
-            if (collidableObject.IsColliding(collidableObject2))
-            {
-                Die();
-            }
+            //CollidableObject collidableObject2 = new CollidableObject(collidableObject.Texture, Vector2.One);
+            //if (collidableObject.IsColliding(collidableObject2))
+            //{
+            //    Die();
+            //}
         }
 
         /// <summary>

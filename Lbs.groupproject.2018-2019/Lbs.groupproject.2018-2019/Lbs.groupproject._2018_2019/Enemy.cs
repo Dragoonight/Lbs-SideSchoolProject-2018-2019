@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Lbs.groupproject._2018_2019
 {
-    internal class Enemy
+    public class Enemy
     {
         // TODO: refine documentation and more
 
