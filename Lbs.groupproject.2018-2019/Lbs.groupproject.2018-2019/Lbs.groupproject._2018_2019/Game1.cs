@@ -23,7 +23,7 @@ namespace Lbs.groupproject._2018_2019
 
         #region Things to be moved later to InGame.cs
 
-        private MovableBackground background1;
+        static public MovableBackground background1;
 
         #endregion
 

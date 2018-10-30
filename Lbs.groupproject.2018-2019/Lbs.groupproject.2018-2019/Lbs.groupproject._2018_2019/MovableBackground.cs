@@ -7,7 +7,7 @@ namespace Lbs.groupproject._2018_2019
     /// <summary>
     ///     Moves the InGame background to create the illusion that the Player is moving
     /// </summary>
-    internal class MovableBackground 
+    public class MovableBackground 
     {
         // TODO: Document me
         private Point maxSourceBounds;

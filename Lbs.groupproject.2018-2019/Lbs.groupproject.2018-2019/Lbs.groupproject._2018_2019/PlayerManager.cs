@@ -17,7 +17,7 @@ namespace Lbs.groupproject._2018_2019
     {
         static public Player player1;
 
-        // static public Player player2;
+        static public Player player2;
 
         #region Textures
 
@@ -34,9 +34,9 @@ namespace Lbs.groupproject._2018_2019
             player1Texture1 = content.Load<Texture2D>(@"Textures/Test_Player");
 
             // Create player1
-            player1 = new Player(player1Texture1, new Vector2(Game1.ScreenBounds.X * (3 / 7), Game1.ScreenBounds.Y / 2));
+            player1 = new Player(player1Texture1, new Vector2(Game1.ScreenBounds.X * 0.75f , Game1.ScreenBounds.Y / 2));
             // Create player2
-            // player2 = new Player(player1Texture1, new Vector2(Game1.ScreenBounds.X * (4 / 7), Game1.ScreenBounds.Y / 2));
+            player2 = new Player(player1Texture1, new Vector2(Game1.ScreenBounds.X * 0.25f, Game1.ScreenBounds.Y / 2));
         }
 
         /// <summary>
@@ -52,17 +52,42 @@ namespace Lbs.groupproject._2018_2019
                 PlayerControls.CheckPlayer1Input();
             }
 
-            //// If player 2 is alive
-            //if (player1.IsAlive)
-            //{
-            //    // Then check player 2´s input
-            //    PlayerControls.CheckPlayer1Input();
-            //}
+            // If player 2 is alive
+            if (player1.IsAlive)
+            {
+                // Then check player 2´s input
+                PlayerControls.CheckPlayer2Input();
+            }
 
             // Update players postion
             player1.Update(gameTime);
-            // player2.Update(gameTime);
+            player2.Update(gameTime);
 
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="playerNumber">acceptable inputs 1 or 2</param>
+        public static void MoveWorld(int playerNumber)
+        {
+
+
+            Game1.background1.MoveBackground(Point.Zero);
+
+
+            if (playerNumber == 1)
+            {
+                
+            }
+            else if (playerNumber == 2)
+            {
+
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException();
+            }
         }
 
 
@@ -73,7 +98,7 @@ namespace Lbs.groupproject._2018_2019
         static public void Draw(SpriteBatch spriteBatch)
         {
             player1.Draw(spriteBatch);
-            // player2.Draw(spriteBatch);
+            player2.Draw(spriteBatch);
         }
     }
 }

@@ -106,9 +106,43 @@ namespace Lbs.groupproject._2018_2019
         /// <summary>
         /// Check player 2's keyboard input
         /// </summary>
-        //public void CheckPlayer2Input()
-        //{
+        public static void CheckPlayer2Input()
+        {
+            // Defines gamePad as a GamePadState so you can use it to map controls on a controller    
+            GamePadState gamePad2 = GamePad.GetState(PlayerIndex.One);
 
-        //}
+
+
+            // If the player is holding down W, then the player 1's character goes upward
+            if (currentKBState.IsKeyDown(Keys.Up))
+            {
+                PlayerManager.player2.MoveUp();
+            }
+
+            // If the player is holding down A, then the player 1's character goes left
+            if (currentKBState.IsKeyDown(Keys.Left))
+            {
+                PlayerManager.player2.MoveLeft();
+            }
+
+            // If the player is holding down S, then the player 1's character goes down
+            if (currentKBState.IsKeyDown(Keys.Down))
+            {
+                PlayerManager.player2.MoveDown();
+            }
+
+            // If the player is holding down D, then the player 1's character goes right
+            if (currentKBState.IsKeyDown(Keys.Right))
+            {
+                PlayerManager.player2.MoveRight();
+            }
+
+            // Since previousKBState is one update after currentKBState this will make it a single press.
+            if (currentKBState.IsKeyDown(Keys.RightControl) && previousKBState.IsKeyUp(Keys.RightControl))
+            {
+                PlayerManager.player2.MoveUp();
+            }
+
+        }
     }
 }
