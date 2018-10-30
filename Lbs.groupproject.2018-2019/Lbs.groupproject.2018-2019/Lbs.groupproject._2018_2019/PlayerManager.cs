@@ -19,6 +19,8 @@ namespace Lbs.groupproject._2018_2019
 
         static public Player player2;
 
+        static private Rectangle playerBoundigRectangle = new Rectangle((int)(Game1.ScreenBounds.X * 0.2f), (int)(Game1.ScreenBounds.Y * 0.2f), (int)(Game1.ScreenBounds.X * 0.8f), (int)(Game1.ScreenBounds.Y * 0.8f));
+
         #region Textures
 
         /// <summary>
@@ -50,44 +52,115 @@ namespace Lbs.groupproject._2018_2019
             {
                 // Then check player 1´s input
                 PlayerControls.CheckPlayer1Input();
+
+                UpdatePlayer1Bounding();
             }
 
             // If player 2 is alive
             if (player1.IsAlive)
             {
-                // Then check player 2´s input
+                // check player 2´s input
                 PlayerControls.CheckPlayer2Input();
+                
+                UpdatePlayer2Bounding();
             }
 
-            // Update players postion
+            // Update players logic
             player1.Update(gameTime);
             player2.Update(gameTime);
 
         }
 
+        private static void UpdatePlayer1Bounding()
+        {
+            // Left bounding
+            if (player1.collidableObject.Position.X - playerBoundigRectangle.Location.X < 0)
+            {
+                player1.collidableObject.Position.X -= player1.collidableObject.Position.X - playerBoundigRectangle.Location.X;
+            }
+            // Top bounding
+            if (player1.collidableObject.Position.Y - playerBoundigRectangle.Location.Y < 0)
+            {
+                player1.collidableObject.Position.Y -= player1.collidableObject.Position.Y - playerBoundigRectangle.Location.Y;
+            }
+
+            // Bottom bounding
+            if (player1.collidableObject.Position.Y - playerBoundigRectangle.Location.Y > playerBoundigRectangle.Y)
+            {
+                player1.collidableObject.Position.Y -= player1.collidableObject.Position.Y - playerBoundigRectangle.Height;
+            }
+
+            // Right bounding
+            if (player1.collidableObject.Position.X - playerBoundigRectangle.Location.X > playerBoundigRectangle.Width)
+            {
+                player1.collidableObject.Position.X -= player1.collidableObject.Position.X - playerBoundigRectangle.Location.X;
+            }
+        }
+
+        private static void UpdatePlayer2Bounding()
+        {
+            // Left bounding
+            if (player2.collidableObject.Position.X - playerBoundigRectangle.Location.X < 0)
+            {
+                player2.collidableObject.Position.X -= player2.collidableObject.Position.X - playerBoundigRectangle.Location.X;
+            }
+            // Top bounding
+            if (player2.collidableObject.Position.Y - playerBoundigRectangle.Location.Y < 0)
+            {
+                player2.collidableObject.Position.Y -= player2.collidableObject.Position.Y - playerBoundigRectangle.Location.Y;
+            }
+
+            // Bottom bounding
+            if (player2.collidableObject.Position.Y - playerBoundigRectangle.Location.Y > playerBoundigRectangle.Y)
+            {
+                player2.collidableObject.Position.Y -= player2.collidableObject.Position.Y - playerBoundigRectangle.Height;
+            }
+
+            // Right bounding
+            if (player2.collidableObject.Position.X - playerBoundigRectangle.Location.X > playerBoundigRectangle.Width)
+            {
+                player2.collidableObject.Position.X -= player2.collidableObject.Position.X - playerBoundigRectangle.Location.X;
+            }
+        }
+
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="playerNumber">acceptable inputs 1 or 2</param>
-        public static void MoveWorld(int playerNumber)
+        public static void MoveWorld()
         {
+            Point averagePlayerpositionDifferenceFromCenter = new Point(
+                // X
+                (Game1.ScreenBounds.X / 2) - ((int)player1.collidableObject.Position.X + (int)player2.collidableObject.Position.X / 2),
+                // Y
+                (Game1.ScreenBounds.Y / 2) - ((int)player1.collidableObject.Position.Y + (int)player2.collidableObject.Position.Y / 2)); 
+
+            
+
+            //Game1.background1.MoveBackground(new Point(
+            //    Game1.background1.SourceRectangle.Center.X - averagePlayerpositionDifferenceFromCenter.X,
+            //    Game1.background1.SourceRectangle.Center.Y - averagePlayerpositionDifferenceFromCenter.Y));
+
+            // Player 1 bounding, keeps player 1 from exiting the screen
 
 
-            Game1.background1.MoveBackground(Point.Zero);
+
+            Console.WriteLine(player1.collidableObject.Position);
 
 
-            if (playerNumber == 1)
-            {
-                
-            }
-            else if (playerNumber == 2)
-            {
+            //if (playerNumber == 1)
+            //{
 
-            }
-            else
-            {
-                throw new ArgumentOutOfRangeException();
-            }
+            //}
+            //else if (playerNumber == 2)
+            //{
+
+            //}
+            //else
+            //{
+            //    throw new ArgumentOutOfRangeException();
+            //}
         }
 
 

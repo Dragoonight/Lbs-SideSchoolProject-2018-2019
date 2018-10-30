@@ -16,7 +16,7 @@ namespace Lbs.groupproject._2018_2019
         public bool IsSourceMaxY;
         public bool IsSourceMinX;
         public bool IsSourceMinY;
-        private Rectangle SourceRectangle;
+        public Rectangle SourceRectangle;
 
         /// <summary>
         ///     Creates a new MovableBackground with a texture, sourceRectangle and a default destinationRectangle  
