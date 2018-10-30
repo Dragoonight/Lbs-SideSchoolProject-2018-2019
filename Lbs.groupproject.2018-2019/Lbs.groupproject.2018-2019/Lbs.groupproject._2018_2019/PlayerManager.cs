@@ -78,6 +78,7 @@ namespace Lbs.groupproject._2018_2019
             {
                 player1.collidableObject.Position.X -= player1.collidableObject.Position.X - playerBoundigRectangle.Location.X;
             }
+
             // Top bounding
             if (player1.collidableObject.Position.Y - playerBoundigRectangle.Location.Y < 0)
             {
@@ -85,15 +86,15 @@ namespace Lbs.groupproject._2018_2019
             }
 
             // Bottom bounding
-            if (player1.collidableObject.Position.Y - playerBoundigRectangle.Location.Y > playerBoundigRectangle.Y)
+            if (playerBoundigRectangle.Height - player1.collidableObject.Position.Y  < 0)
             {
-                player1.collidableObject.Position.Y -= player1.collidableObject.Position.Y - playerBoundigRectangle.Height;
+                player1.collidableObject.Position.Y -= player1.collidableObject.Position.Y - playerBoundigRectangle.Height ;
             }
 
             // Right bounding
-            if (player1.collidableObject.Position.X - playerBoundigRectangle.Location.X > playerBoundigRectangle.Width)
+            if (playerBoundigRectangle.Width - player1.collidableObject.Position.X < 0)
             {
-                player1.collidableObject.Position.X -= player1.collidableObject.Position.X - playerBoundigRectangle.Location.X;
+                player1.collidableObject.Position.X -= player1.collidableObject.Position.X - playerBoundigRectangle.Width;
             }
         }
 
@@ -104,6 +105,7 @@ namespace Lbs.groupproject._2018_2019
             {
                 player2.collidableObject.Position.X -= player2.collidableObject.Position.X - playerBoundigRectangle.Location.X;
             }
+
             // Top bounding
             if (player2.collidableObject.Position.Y - playerBoundigRectangle.Location.Y < 0)
             {
@@ -111,15 +113,15 @@ namespace Lbs.groupproject._2018_2019
             }
 
             // Bottom bounding
-            if (player2.collidableObject.Position.Y - playerBoundigRectangle.Location.Y > playerBoundigRectangle.Y)
+            if (playerBoundigRectangle.Height - player2.collidableObject.Position.Y < 0)
             {
                 player2.collidableObject.Position.Y -= player2.collidableObject.Position.Y - playerBoundigRectangle.Height;
             }
 
             // Right bounding
-            if (player2.collidableObject.Position.X - playerBoundigRectangle.Location.X > playerBoundigRectangle.Width)
+            if (playerBoundigRectangle.Width - player2.collidableObject.Position.X < 0)
             {
-                player2.collidableObject.Position.X -= player2.collidableObject.Position.X - playerBoundigRectangle.Location.X;
+                player2.collidableObject.Position.X -= player2.collidableObject.Position.X - playerBoundigRectangle.Width;
             }
         }
 
