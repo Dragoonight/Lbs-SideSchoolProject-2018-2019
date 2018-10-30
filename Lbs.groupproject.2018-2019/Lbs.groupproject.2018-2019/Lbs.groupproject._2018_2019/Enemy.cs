@@ -29,8 +29,8 @@ namespace Lbs.groupproject._2018_2019
         /// </summary>
         private readonly Texture2D aliveTexture2D;
 
-
         public bool IsEnemyDead;
+
 
         /// <summary>
         ///     Creates a new instance of Enemy with a texture, CollidableObject and type

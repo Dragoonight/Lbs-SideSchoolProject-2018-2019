@@ -40,7 +40,9 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Textures\Test_Player.png">
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\Player.test.png">
       <Name>Test_Player</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
