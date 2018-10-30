@@ -35,15 +35,24 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Textures\Test_Object.png">
-      <Name>Test_Object</Name>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\Test_Player.png">
+      <Name>Test_Player</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Textures\Player.test.png">
-      <Name>Test_Player</Name>
+    <Compile Include="Textures\Test_Enemy.png">
+      <Name>Test_Enemy</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\Test_Player2.png">
+      <Name>Test_Player2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
