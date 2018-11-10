@@ -12,10 +12,14 @@ namespace Lbs.groupproject._2018_2019
     class Player
     {
         private Vector2 velocity;
+        /// <summary>
+        /// Amount to increase velocity by when player is moving
+        /// </summary>
         private Vector2 movementSpeed = new Vector2(0.5f);
+        /// <summary>
+        /// Position in world
+        /// </summary>
         public Vector2 inWorldPosition;
-
-        private Vector2 maxInWorldX;
             
         /// <summary>
         /// Contains position, texture, rotation, origin.
@@ -33,24 +37,33 @@ namespace Lbs.groupproject._2018_2019
         public Player(Texture2D texture, Vector2 position)
         {
             inWorldPosition = position;
-            //Create a new CollidableObject
+            // Create a new CollidableObject
             collidableObject = new CollidableObject(texture, position);
         }
         
+        /// <summary>
+        /// Update Player logical
+        /// </summary>
+        /// <param name="gameTime"></param>
         public void Update(GameTime gameTime)
         {
+
             UpdatePlayerBounding(gameTime);
             // Update position
             UpdateInWorldPosition(gameTime);
 
-            // Moves object by subtracting the upper-left coordinate of the background to the player´s position in world
-            collidableObject.Position.X = inWorldPosition.X - InGame.movableBackground.SourceRectangle.X;
-            collidableObject.Position.Y = inWorldPosition.Y - InGame.movableBackground.SourceRectangle.Y;
+            // Moves object by subtracting the upper-left coordinate of the backgrounds location to the player´s in world position 
+            collidableObject.Position.X = MathHelper.Clamp(inWorldPosition.X - InGame.movableBackground.SourceRectangle.X, 0 + collidableObject.Origin.X, Game1.ScreenBounds.X - collidableObject.Origin.X);
+            collidableObject.Position.Y = MathHelper.Clamp(inWorldPosition.Y - InGame.movableBackground.SourceRectangle.Y, 0 + collidableObject.Origin.Y, Game1.ScreenBounds.Y - collidableObject.Origin.Y);
 
-            // Reset velocity
+            // Reset velocity for next update
             velocity = Vector2.Zero;
         }
 
+        /// <summary>
+        /// Moves player with velocity whilst limiting position to remain within the screen
+        /// </summary>
+        /// <param name="gameTime"></param>
         private void UpdateInWorldPosition(GameTime gameTime)
         {
             Vector2 moveValue = velocity * gameTime.ElapsedGameTime.Milliseconds;
@@ -64,15 +77,18 @@ namespace Lbs.groupproject._2018_2019
         private void UpdatePlayerBounding(GameTime gameTime)
         {
             // Left bounding
+            // when player goes outside the rectangle move 
             if (collidableObject.Position.X <= PlayerManager.playerBoundigRectangle.X)
             {
+                // Move Background
+                InGame.movableBackground.MoveBackground(new Point((int)(collidableObject.Position.X - PlayerManager.playerBoundigRectangle.X), 0));
+                // 
                 if (!InGame.movableBackground.IsSourceMinX)
                 {
                     // Move Player
-                    velocity.X -= (collidableObject.Position.X - PlayerManager.playerBoundigRectangle.X) / gameTime.ElapsedGameTime.Milliseconds;
+                    velocity.X = ;
+                    // (collidableObject.Position.X - PlayerManager.playerBoundigRectangle.X) / gameTime.ElapsedGameTime.Milliseconds;
                 }
-                // Move Background
-                InGame.movableBackground.MoveBackground(new Point((int)(collidableObject.Position.X - PlayerManager.playerBoundigRectangle.X), 0));
 
             }
 
