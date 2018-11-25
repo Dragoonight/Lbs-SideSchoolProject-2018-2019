@@ -9,14 +9,16 @@ namespace Lbs.groupproject._2018_2019
     /// </summary>
     public class MovableBackground 
     {
-        // TODO: Document me
+        /// <summary>
+        /// The texture minus the screen size
+        /// </summary>
         private Point maxSourceBounds;
-
+        public Rectangle SourceRectangle;
+        
         public bool IsSourceMaxX;
         public bool IsSourceMaxY;
         public bool IsSourceMinX;
         public bool IsSourceMinY;
-        public Rectangle SourceRectangle;
 
         /// <summary>
         ///     Creates a new MovableBackground with a texture, sourceRectangle and a default destinationRectangle  
@@ -70,73 +72,8 @@ namespace Lbs.groupproject._2018_2019
         /// <param name="moveByPoint">Point to move background by</param>
         public void MoveBackground(Point moveByPoint)
         {
-
-            // Movement restriction on X and Y axis
-            // X-AXIS
-            // If moveByPoint.X is positive,
-            if (moveByPoint.X > 0)
-            {
-                // And moving will not exceed maxSourceBounds.X,
-                if (SourceRectangle.X + moveByPoint.X <= maxSourceBounds.X)
-                {
-                    // Then add moveByPoint.X to _sourceRectangle.X
-                    SourceRectangle.X += moveByPoint.X;
-                }
-                else
-                {
-                    // Else set _sourceRectangle.X to maxSourceBounds.X
-                    SourceRectangle.X = maxSourceBounds.X;
-                }
-            }
-
-            // Else moveByPoint.X must be negative or zero
-            else
-            {
-                // And moving will not make _sourceRectangle.X negative,
-                if (SourceRectangle.X + moveByPoint.X >= 0)
-                {
-                    // Then add moveByPoint.X to _sourceRectangle.X
-                    SourceRectangle.X += moveByPoint.X;
-                }
-                else
-                {
-                    // Else set _sourceRectangle.X to 0
-                    SourceRectangle.X = 0;
-                }
-            }
-
-            // Y-AXIS
-            // If moveByPoint.Y is positive,
-            if (moveByPoint.Y > 0)
-            {
-                // And moving will not exceed maxSourceBounds.X,
-                if (SourceRectangle.Y + moveByPoint.Y <= maxSourceBounds.Y)
-                {
-                    // Then add moveByPoint.X to _sourceRectangle.X
-                    SourceRectangle.Y += moveByPoint.Y;
-                }
-                else
-                {
-                    // Else set _sourceRectangle.X to maxSourceBounds.X
-                    SourceRectangle.Y = maxSourceBounds.Y;
-                }
-            }
-
-            // Else moveByPoint.Y is negative or zero
-            else
-            {
-                // And moving will not make _sourceRectangle.Y negative,
-                if (SourceRectangle.Y + moveByPoint.Y >= 0)
-                {
-                    // Then add moveByPoint.Y to _sourceRectangle.Y
-                    SourceRectangle.Y += moveByPoint.Y;
-                }
-                else
-                {
-                    // Else set _sourceRectangle.Y to 0
-                    SourceRectangle.Y = 0;
-                }
-            }
+            SourceRectangle.X = (int)MathHelper.Clamp(SourceRectangle.X + moveByPoint.X, 0, maxSourceBounds.X);
+            SourceRectangle.Y = (int)MathHelper.Clamp(SourceRectangle.Y + moveByPoint.Y, 0, maxSourceBounds.Y);
         }
 
         /// <summary>
